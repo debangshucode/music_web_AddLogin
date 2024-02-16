@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Music Website Login</title>
+</head>
+<body>
+    <header>
+        <div class="left_bx1">
+            <div class="content">
+                <form method="post" id="mainform" >
+                    <h3>Login</h3>
+                    <div class="card">
+                        <label for="name">Name</label>
+                        <input type="email" name="Email" placeholder="Enter Your Email" id="email" required>
+                    </div>
+                    <div class="card">
+                        <label for="password">Password</label>
+                        <input type="password" name="user_password" placeholder="Enter Your Password" id="pass" required>
+                    </div>
+                    <input type="submit" value="Login" class="submit">
+                    <div class="check">
+                        <input type="checkbox" name="" id=""><span>Remember Me</span>
+                    </div>
+                    <p>Don't have a account? <a href="signup.html">Sign Up</a> </p>
+                </form>
+            </div>
+        </div>
+        <div class="right_bx1">
+            <img src="assets/images/log_bg_png.png" alt="">
+            <h3>Inccorect Password / User Name</h3>
+        </div>
+    </header>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase,get,ref,child} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      
+      
+      
+        const firebaseConfig = {
+          apiKey: "AIzaSyBwppUaXUKp3Zn-muiXjbh4tlMau6YEYog",
+          authDomain: "music-web-auth.firebaseapp.com",
+          projectId: "music-web-auth",
+          storageBucket: "music-web-auth.appspot.com",
+          messagingSenderId: "128790146246",
+          appId: "1:128790146246:web:ba1095ce8c5a70f2c1bbc7",
+          measurementId: "G-B59CKFYDB7"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+        const dbref = ref(db);
+
+        let EmailInp = document.getElementById('email');
+        let pass = document.getElementById('pass');
+
+        let SignInUser = evt => {
+            evt.preventDefault();
+
+            signInWithEmailAndPassword(auth,EmailInp.value,pass.value)
+            .then((userCredential) => {
+            window.location.href = "assets/home.html";
+            })
+            .catch((error)=>{
+                alert(error.message);
+            })
+        }
+
+        mainform.addEventListener('submit', SignInUser);
+      </script>
+    
+</body>
+</html>
