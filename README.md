@@ -18,7 +18,6 @@ This is a music website where users can listen to songs, download songs, search 
 - JavaScript
 - Firebase Authentication
 
-## Usage
 
-1. Clone the repository:
+![Image Alt Text](assets/overview.png)
 
